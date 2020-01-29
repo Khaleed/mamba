@@ -4,7 +4,7 @@
  * @param {!express:Request} req HTTP request context.
  * @param {!express:Response} res HTTP response context.
  */
-exports.eventsById = (req, res) => {
+exports.eventById = (req, res) => {
     const eventId = req.params.id;
 
     const event = {
