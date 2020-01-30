@@ -5,7 +5,7 @@
  * @param {!express:Response} res HTTP response context.
  */
 exports.eventById = (req, res) => {
-    const eventId = req.params.id;
+    const eventId = req.query.id;
 
     const event = {
         "id": eventId,
