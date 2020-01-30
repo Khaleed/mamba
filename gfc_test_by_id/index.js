@@ -10,10 +10,14 @@ exports.eventById = (req, res) => {
     const firestore = new Firestore();
     const events = [];
 
-    firestore().collection('events').get().then(events => {
-        events.forEach(event => {
-            events.push(event.data());
+    firestore().collection('events').get()
+        .then(events => {
+            events.forEach(event => {
+                events.push(event.data());
+            })
+            res.status(200).json({events});
         })
-        res.status(200).json({events});
-    })
+        .catch(error => {
+            res.status(500).json(error);
+        })
 };
