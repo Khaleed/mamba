@@ -16,13 +16,4 @@ exports.eventById = (req, res) => {
         })
         res.status(200).json({events});
     })
-
-    // const event = {
-    //     "id": eventId,
-    //     "name": "Race for life!",
-    //     "date": "29/01/2020",
-    //     "map": {"coordinates": "200, 125"}
-    // }
-
-    // res.status(200).json(event);
 };
