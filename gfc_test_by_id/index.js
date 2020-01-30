@@ -1,3 +1,5 @@
+const {Firestore} = require('@google-cloud/firestore');
+
 /**
  * Responds to any HTTP request.
  *
@@ -5,14 +7,22 @@
  * @param {!express:Response} res HTTP response context.
  */
 exports.eventById = (req, res) => {
-    const eventId = req.query.id;
+    const firestore = new Firestore();
+    const events = [];
 
-    const event = {
-        "id": eventId,
-        "name": "Race for life!",
-        "date": "29/01/2020",
-        "map": {"coordinates": "200, 125"}
-    }
+    firestore().collection('events').get().then(events => {
+        events.forEach(event => {
+            events.push(event.data());
+        })
+        res.status(200).json({events});
+    })
 
-    res.status(200).json(event);
+    // const event = {
+    //     "id": eventId,
+    //     "name": "Race for life!",
+    //     "date": "29/01/2020",
+    //     "map": {"coordinates": "200, 125"}
+    // }
+
+    // res.status(200).json(event);
 };
